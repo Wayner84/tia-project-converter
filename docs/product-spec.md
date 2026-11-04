@@ -75,14 +75,15 @@ Separate worker processes are required because Siemens Openness assemblies and o
 
 ## M0 acceptance criteria
 
-- Metadata parser derives version from both filename and XML and reports disagreement.
-- Invalid/non-TIA XML is rejected without reading arbitrary external resources.
+- Strict XML parsing rejects malformed XML, DOCTYPE/entity declarations, wrong roots, invalid tokens, and ambiguous/missing version metadata.
+- `.zapXX` archives are inspected locally with pre-decompression bounds on ZIP structure, entry count, declared sizes, project XML size, and compression ratio; encrypted/ambiguous/mismatched projects are rejected.
+- Conversion-log output is derived from sanitized filenames only; raw log text and embedded paths are never displayed.
 - Files stay in-browser; there are no upload endpoints or analytics.
-- Target selector includes V17 through the newest version represented in the compatibility data.
-- Downgrade requests receive explicit risk and prerequisite warnings.
-- JSON report includes source identity, detected version, selected target, required local workers, and limitations.
+- Target selector includes V17 through V21, including deterministic V21→V18 planning.
+- Downgrade requests receive explicit risk and prerequisite warnings and remain labelled as plans, not completed conversions.
+- JSON reports include source identity, detected version, selected target, required local workers, warnings, and limitations.
 - Static build works under the GitHub Pages project subpath.
-- Unit tests, build, browser interaction smoke test, Pages workflow, and live URL all pass.
+- Unit tests, private real-fixture checks, build, browser interaction smoke test, Pages workflow, and live URL all pass.
 
 ## Out of scope until proven
 

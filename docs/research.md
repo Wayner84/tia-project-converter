@@ -16,6 +16,8 @@
 
 A user-owned V18 project entry file is XML and declares both `ProjectCompatibilityVersion="18.0.1.0"` and `ProjectVersion>18.0.1.0`. The surrounding project folder contains proprietary `System/PEData.plf` and `System/PEData.idx` data plus auxiliary SQLite databases. This supports using the entry file for safe metadata inspection while reserving actual content migration for TIA Openness.
 
+A matched user-owned fixture pair was also inspected locally: a V19 `.zap19` archive and the same project after TIA Portal upgraded it to V21. The V21 archive includes a `ConversionLog_19.0.0.0_to_21.0.0.0.xml` record, changed `PEData.plf`/`PEData.idx` payloads, changed auxiliary databases, and a different VCI schema. The conversion log records internal repair, rights/password-hash migration, cross-reference regeneration, package-container removal, and checksum warnings. This is direct evidence that version conversion performs structured transformations rather than an extension or metadata rename. Private fixture content and embedded paths are not committed or displayed by the public app.
+
 ## Open questions requiring real installations
 
 - Exact side-by-side installation constraints for V17 plus each source version.
